@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "steve dignam",
   "license": "BSD-2-Clause",
+  "keywords": [
+    "tslint",
+    "typescript"
+  ],
   "dependencies": {},
   "devDependencies": {
     "prettier": "^1.15.3",
