@@ -1,0 +1,8 @@
+{
+  "rulesDirectory": "./dist/rules",
+  "rules": {
+    "react-prefer-simple-fragment": false,
+    "no-pointless-computed-property-name": false,
+    "jsx-no-true-attribute": false
+  }
+}
