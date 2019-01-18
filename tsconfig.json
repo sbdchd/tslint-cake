@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "build/",
+    "rootDir": "src/",
+    "sourceMap": false,
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "baseUrl": "./src"
+  },
+  "exclude": ["build", "node_modules", "test/rules"]
+}

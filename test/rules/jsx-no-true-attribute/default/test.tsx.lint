@@ -1,0 +1,12 @@
+<Foo b={true} />
+     ~~~~~~~~ [0]
+
+<Foo b={false} />
+
+<Foo b="true" />
+
+<Foo b="false" />
+
+<Foo b/>
+
+[0]: Prefer simple boolean attribute

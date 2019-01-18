@@ -1,0 +1,17 @@
+const bar = {
+  ["foo bar"]: true,
+  ["foo"]: true,
+  ~~~~~~~ [0]
+  [10]: true,
+  ~~~~ [0]
+  ["foo-bar"]: true
+  bar: true,
+  ["$jquery"]: true,
+  ~~~~~~~~~~~ [0]
+  [bar()]: 1,
+  [(7+8)]: 1,
+  ["π"]: true,
+  ~~~~~ [0]
+}
+
+[0]: No pointless computed property names. Remove the surrounding [].

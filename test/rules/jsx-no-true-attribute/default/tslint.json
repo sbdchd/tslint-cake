@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "jsx-no-true-attribute": true
+  }
+}

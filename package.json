@@ -1,0 +1,28 @@
+{
+  "name": "tslint-cake",
+  "version": "0.0.1",
+  "description": "TSLint rules for sweet code",
+  "main": "index.js",
+  "author": "steve dignam",
+  "license": "BSD-2-Clause",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^1.15.3",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-immutable": "^5.1.0",
+    "tslint-microsoft-contrib": "^6.0.0",
+    "typescript": "^3.2.4"
+  },
+  "scripts": {
+    "fmt": "prettier --write '**/*'",
+    "build": "tsc",
+    "test": "tslint --rules-dir build/rules --test test/rules/**/*",
+    "lint": "tslint --fix --project .",
+    "ci:lint": "tsc --noEmit && tslint --project . && prettier --list-different '**/*'"
+  },
+  "peerDependencies": {
+    "tslint": "^5.12.1",
+    "typescript": "^3.0.0"
+  }
+}

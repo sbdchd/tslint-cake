@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "no-pointless-computed-property-name": true
+  }
+}

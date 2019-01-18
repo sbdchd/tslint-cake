@@ -1,0 +1,15 @@
+<React.Fragment>
+~~~~~~~~~~~~~~~~
+<Foo/>
+~~~~~~
+<Bar/>
+~~~~~~
+</React.Fragment>
+~~~~~~~~~~~~~~~~~ [0]
+
+<>
+<Foo/>
+<Bar/>
+</>
+
+[0]: Prefer simple React fragments. Use <></> instead of <React.Fragment></React.Fragment>
