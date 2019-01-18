@@ -1,5 +1,5 @@
 {
-  "rulesDirectory": "./dist/rules",
+  "rulesDirectory": "./build/rules",
   "rules": {
     "react-prefer-simple-fragment": false,
     "no-pointless-computed-property-name": false,

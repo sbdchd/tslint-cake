@@ -2,6 +2,27 @@
 
 > TSLint rules for sweet code
 
+## Usage
+
+1. Install
+
+```shell
+yarn add tslint-cake
+```
+
+2. Update `tslint.json`
+
+```json
+{
+  "extends": ["tslint-cake"],
+  "rules": {
+    "react-prefer-simple-fragment": true,
+    "no-pointless-computed-property-name": true,
+    "jsx-no-true-attribute": true
+  }
+}
+```
+
 ## Why?
 
 To have a place to add miscellaneous TSLint rules that don't exist in TSLint
@@ -23,7 +44,7 @@ Use `<Foo bar/>` instead of `<Foo bar={true}/>`
 
 ## Dev
 
-```
+```shell
 yarn build
 
 yarn test
@@ -31,6 +52,8 @@ yarn test
 yarn lint
 
 yarn fmt
+
+yarn publish
 ```
 
 ## TODO
