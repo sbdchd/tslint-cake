@@ -1,4 +1,4 @@
-# tslint-cake
+# tslint-cake [![CircleCI](https://circleci.com/gh/sbdchd/tslint-cake.svg?style=svg)](https://circleci.com/gh/sbdchd/tslint-cake)
 
 > TSLint rules for sweet code
 
@@ -35,5 +35,4 @@ yarn fmt
 
 ## TODO
 
-- setup CI with prettier, tslint, and testing
 - add fixers
