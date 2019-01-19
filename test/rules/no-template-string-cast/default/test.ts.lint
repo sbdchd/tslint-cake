@@ -1,0 +1,10 @@
+const bar = new Date(1776, 1, 1)
+const foo = `${bar}`
+            ~~~~~~~~ [0]
+const foo = `${1000 / 20 + 10}`
+            ~~~~~~~~~~~~~~~~~~~ [0]
+const alpha = `today is: ${bar}`
+
+const alpha = `${bar} was yesterday`
+
+[0]: Using template string as cast. Use String() or .toString() instead.

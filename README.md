@@ -18,7 +18,8 @@ yarn add tslint-cake
   "rules": {
     "react-prefer-simple-fragment": true,
     "no-pointless-computed-property-name": true,
-    "jsx-no-true-attribute": true
+    "jsx-no-true-attribute": true,
+    "no-template-string-cast": true
   }
 }
 ```
@@ -41,6 +42,10 @@ Use `<></>` instead of `<React.Fragment><React.Fragment/>`
 ### `jsx-no-true-attribute`
 
 Use `<Foo bar/>` instead of `<Foo bar={true}/>`
+
+### `no-template-string-cast`
+
+Prefer `String()` or `.toString()` to cast as a string instead of `` `${}` ``.
 
 ## Dev
 
