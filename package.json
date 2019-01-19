@@ -1,6 +1,6 @@
 {
   "name": "tslint-cake",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TSLint rules for sweet code",
   "main": "tslint-cake.json",
   "author": "steve dignam",
