@@ -47,6 +47,26 @@ Use `<Foo bar/>` instead of `<Foo bar={true}/>`
 
 Prefer `String()` or `.toString()` to cast as a string instead of `` `${}` ``.
 
+### `no-pointless-case-scope`
+
+Remove unnecessary scopes in `switch` statement `case`s when the only child
+expression is a `return` statement.
+
+E.g.,
+
+```typescript
+switch (foo) {
+  case bar: {
+    return "foo"
+  }
+}
+// can become
+switch (foo) {
+  case bar:
+    return "foo"
+}
+```
+
 ## Dev
 
 ```shell

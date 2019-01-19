@@ -1,0 +1,16 @@
+switch (bar) {
+  case foo: {
+            ~
+    return alpha
+~~~~~~~~~~~~~~~~
+  }
+~~~ [0]
+  case buzz:
+    return alpha
+  case buzz: {
+    const x = 10
+    return { ...alpha, x }
+  }
+}
+
+[0]: No pointless case scope. Remove the surrounding {}.

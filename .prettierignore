@@ -5,3 +5,5 @@ coverage/
 *.lint
 *.lock
 *ignore
+*.log
+build

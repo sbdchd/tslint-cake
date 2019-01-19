@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "no-pointless-case-scope": true
+  }
+}
