@@ -3,6 +3,8 @@
   "rules": {
     "react-prefer-simple-fragment": false,
     "no-pointless-computed-property-name": false,
-    "jsx-no-true-attribute": false
+    "jsx-no-true-attribute": false,
+    "no-template-string-cast": false,
+    "no-name-never": false
   }
 }

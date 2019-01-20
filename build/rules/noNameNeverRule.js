@@ -21,18 +21,18 @@ var Rule = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Rule.prototype.applyWithProgram = function (sourceFile, program) {
-        return this.applyWithWalker(new NoNeverIdentifierRuleWalker(sourceFile, this.getOptions(), program));
+        return this.applyWithWalker(new NoNameNeverRuleWalker(sourceFile, this.getOptions(), program));
     };
-    Rule.FAILURE_STRING = "No never identifier";
+    Rule.FAILURE_STRING = "No name identifier with type never";
     return Rule;
 }(Lint.Rules.TypedRule));
 exports.Rule = Rule;
-var NoNeverIdentifierRuleWalker = /** @class */ (function (_super) {
-    __extends(NoNeverIdentifierRuleWalker, _super);
-    function NoNeverIdentifierRuleWalker() {
+var NoNameNeverRuleWalker = /** @class */ (function (_super) {
+    __extends(NoNameNeverRuleWalker, _super);
+    function NoNameNeverRuleWalker() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    NoNeverIdentifierRuleWalker.prototype.visitIdentifier = function (node) {
+    NoNameNeverRuleWalker.prototype.visitIdentifier = function (node) {
         if (node.text === "name") {
             var nodeType = this.getTypeChecker().getTypeAtLocation(node);
             if (nodeType.flags === ts.TypeFlags.Never) {
@@ -41,5 +41,5 @@ var NoNeverIdentifierRuleWalker = /** @class */ (function (_super) {
             _super.prototype.visitIdentifier.call(this, node);
         }
     };
-    return NoNeverIdentifierRuleWalker;
+    return NoNameNeverRuleWalker;
 }(Lint.ProgramAwareRuleWalker));

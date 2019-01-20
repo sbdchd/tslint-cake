@@ -5,6 +5,9 @@ const foo = name
             ~~~~ [0]
 
 
+declare const alpha: never;
+
+
 interface IFooProps {
     name: string
 }
@@ -18,4 +21,4 @@ function Foo(props: IFooProps) {}
 
 const bar: string = "bar"
 
-[0]: No never identifier
+[0]: No name identifier with type never

@@ -32,7 +32,9 @@ var NoTemplateStringCastWalker = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     NoTemplateStringCastWalker.prototype.visitTemplateExpression = function (node) {
-        if (node.head.text === "" && node.templateSpans.length === 1 && node.templateSpans[0].literal.text === "") {
+        if (node.head.text === "" &&
+            node.templateSpans.length === 1 &&
+            node.templateSpans[0].literal.text === "") {
             this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
         }
         _super.prototype.visitTemplateExpression.call(this, node);
