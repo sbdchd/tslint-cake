@@ -1,0 +1,21 @@
+declare const name: never;
+              ~~~~ [0]
+
+const foo = name
+            ~~~~ [0]
+
+
+interface IFooProps {
+    name: string
+}
+
+function Foo(props: IFooProps) {}
+
+<Foo name={name}/>
+     ~~~~ [0]
+           ~~~~ [0]
+
+
+const bar: string = "bar"
+
+[0]: No never identifier

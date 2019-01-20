@@ -19,7 +19,8 @@ yarn add tslint-cake
     "react-prefer-simple-fragment": true,
     "no-pointless-computed-property-name": true,
     "jsx-no-true-attribute": true,
-    "no-template-string-cast": true
+    "no-template-string-cast": true,
+    "no-never-identifier": true
   }
 }
 ```
@@ -66,6 +67,14 @@ switch (foo) {
     return "foo"
 }
 ```
+
+### `no-never-identifier`
+
+Using a variable with type `never` is likely a mistake.
+
+For instance, `name` is defined globally if you include `--lib dom`.
+
+see: <https://github.com/Microsoft/TypeScript/blob/3a2f6a3ed1a598a241e7c750873105f22e7a2463/lib/lib.dom.d.ts#L17405>
 
 ## Dev
 
