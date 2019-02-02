@@ -73,6 +73,22 @@ Using a variable `name` with type `never` is likely a mistake.
 
 see: <https://github.com/Microsoft/TypeScript/blob/3a2f6a3ed1a598a241e7c750873105f22e7a2463/lib/lib.dom.d.ts#L17405>
 
+### `improper-map-prefer-foreach`
+
+Prefer `forEach` instead of `map` when the result isn't used
+
+```typescript
+foo.map(x => {
+  x.id = 10
+})
+
+// should be
+
+foo.forEach(x => {
+  x.id = 10
+})
+```
+
 ## Dev
 
 ```shell

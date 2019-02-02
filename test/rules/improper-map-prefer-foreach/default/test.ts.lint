@@ -1,0 +1,17 @@
+foo.forEach(x => console.log(x))
+
+bar.map(x => console.log(x))
+    ~~~ [0]
+
+
+const z = foo.map(toDict)
+
+
+foo.fizz.buzz.bar.map(x => console.log(x))
+                  ~~~ [0]
+
+foo.filter(notNull).map(x => console.log(x))
+                    ~~~ [0]
+
+
+[0]: Improper use of `map`. Use `forEach` instead.

@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "improper-map-prefer-foreach": true
+  }
+}
