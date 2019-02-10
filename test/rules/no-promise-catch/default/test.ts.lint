@@ -1,0 +1,18 @@
+const getFooAsync = () => Promise.resolve(1)
+
+getFooAsync()
+  .then(r => console.log(r))
+  .catch(e => console.error(e))
+   ~~~~~ [0]
+
+getFooAsync()
+  .then(r => {
+    if (r instanceof Error) {
+      console.error(r)
+    } else {
+    console.log(r)
+    }
+  })
+
+
+[0]: No promise catch. Instead of throwing an error, use a union or result type.
