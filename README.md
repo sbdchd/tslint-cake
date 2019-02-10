@@ -89,6 +89,31 @@ foo.forEach(x => {
 })
 ```
 
+### `no-promise-catch`
+
+Using `.catch()` on a `Promise` usually means that you could better describe
+the outputs of the async function using a union or `Result<T, E>` types.
+
+```typescript
+declare const getFooAsync: () => Promise<number>
+
+getFooAsync()
+  .then(r => console.log(r))
+  .catch(e => console.error(e)) // `e` could be anything. We can't type the arg to catch.
+
+// instead we can do the following
+
+declare const getBarAsync: () => Promise<number | Error>
+
+getBarAsync().then(r => {
+  if (r instanceof Error) {
+    console.error(r)
+  } else {
+    console.log(r)
+  }
+})
+```
+
 ## Dev
 
 ```shell
