@@ -1,0 +1,43 @@
+interface IFoo {
+    [key: string]: number
+                   ~~~~~~ [0]
+}
+
+interface IBar {
+    [key: string]: number | undefined
+}
+
+interface IUser {
+    readonly id: number
+    readonly email: string
+}
+
+interface IUserStateBad {
+    readonly [key: string]: IUser
+                            ~~~~~ [0]
+}
+
+interface IUserStateGood {
+    readonly [key: string]: IUser | undefined
+}
+
+type MaybeUser = IUser | undefined
+
+interface IUserStateAlsoOk {
+    readonly [key: string]: MaybeUser
+}
+
+type Maybe<T> = T | undefined
+
+interface IFizz {
+    readonly [key: string]: Maybe<number>
+}
+
+type foo = undefined | string
+
+interface B {
+    readonly [key: string]: number | foo
+}
+
+
+[0]: Value of an object index is possibly undefined. Add `undefined` to the key's value type.

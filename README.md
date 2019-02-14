@@ -114,6 +114,22 @@ getBarAsync().then(r => {
 })
 ```
 
+### `object-index-must-return-possibly-undefined`
+
+The values of an index signature of a type are always possibly `undefined`
+even though TypeScript won't warn you. This lint forces you to define your
+index signature to possibly return `undefined`.
+
+```typescript
+interface IFoo {
+  [key: string]: number // Error: Value of an object key is possibly undefined.
+}
+
+interface IBar {
+  [key: string]: number | undefined // ok
+}
+```
+
 ## Dev
 
 ```shell
