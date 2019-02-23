@@ -27,7 +27,9 @@ function isPossiblyUndefined(
 
   if (ts.isUnionTypeNode(node)) {
     return node.types.some(x => isPossiblyUndefined(x, checker))
-  } else if (
+  }
+
+  if (
     nodeType.isUnionOrIntersection() &&
     nodeType.types.some(x => x.flags === ts.TypeFlags.Undefined)
   ) {

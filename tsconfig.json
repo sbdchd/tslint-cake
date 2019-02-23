@@ -9,7 +9,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "lib": ["esnext"]
   },
   "exclude": ["build", "node_modules", "test/rules"]
 }

@@ -35,7 +35,7 @@ function isPossiblyUndefined(node, checker) {
     if (ts.isUnionTypeNode(node)) {
         return node.types.some(function (x) { return isPossiblyUndefined(x, checker); });
     }
-    else if (nodeType.isUnionOrIntersection() &&
+    if (nodeType.isUnionOrIntersection() &&
         nodeType.types.some(function (x) { return x.flags === ts.TypeFlags.Undefined; })) {
         return true;
     }

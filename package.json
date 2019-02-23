@@ -22,11 +22,12 @@
     "fmt": "prettier --write '**/*'",
     "build": "tsc",
     "test": "tslint --rules-dir build/rules --test test/rules/**/*",
+    "test:dbg": "node --inspect-brk node_modules/tslint/bin/tslint --rules-dir build/rules --test test/rules/**/*",
     "lint": "tslint --fix --project .",
     "ci:lint": "tsc --noEmit && tslint --project . && prettier --list-different '**/*'"
   },
   "peerDependencies": {
-    "tslint": "^5.12.1",
+    "tslint": "^5.0.0",
     "typescript": "^3.0.0"
   }
 }

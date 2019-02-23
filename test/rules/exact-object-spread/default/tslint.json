@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "exact-object-spread": true
+  }
+}

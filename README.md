@@ -130,6 +130,66 @@ interface IBar {
 }
 ```
 
+### `exact-object-spread`
+
+This rule is an attempt at gaining some semblence of
+[exactness](https://github.com/Microsoft/TypeScript/issues/12936) with object
+spread.
+
+Currently, there are cases where TypeScript won't warn about adding extra,
+non-existing properties to an object when spreading. This lint fills in some
+of those gaps and warns you when adding non-existent properties.
+
+Note, this rule attempts to enforce
+[exactness](https://flow.org/en/docs/types/objects/#exact-object-types) on
+all spreads and this might not be what you want.
+
+```typescript
+interface IState {
+  id: number
+  name: string
+  address: {
+    street: string
+    state: string
+    country: string
+  }
+}
+
+function update(state: IState): IState {
+  return {
+    ...state,
+    notProp: false // TypeScript error
+  }
+}
+
+// TypeScript will also warn with nested spreading
+function update(state: IState): IState {
+  return {
+    ...state,
+    address: {
+      ...state.address,
+      notProp: false // TypeScript error
+    }
+  }
+}
+
+// However, if we pull the nested spread out into a variable TypeScript won't
+// warn us about extra properties
+
+// no errors with TypeScript
+function update(state: IState): IState {
+  const address = {
+    // TSLint error when we enable this rule
+    ...state.address,
+    foo: "bar"
+  }
+  return {
+    ...state,
+    address
+  }
+}
+```
+
 ## Dev
 
 ```shell

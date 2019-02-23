@@ -1,0 +1,78 @@
+interface IState {
+  id: number,
+  name: string,
+  address: {
+    street: string,
+    state: string,
+    country: string,
+  }
+}
+
+function updateOk(state: IState): IState {
+  const otherObj = {
+    state: "foo",
+    country: "bar",
+  }
+  const newAddress = {
+    ...state.address,
+    street: "foo",
+    ...otherObj,
+  }
+  return {
+    ...state,
+    address: newAddress
+  }
+}
+
+function updateOk(state: IState): IState {
+  return {
+    ...state,
+    address: {
+      ...state.address,
+      street: "foo",
+  }
+}
+
+function updateBad(state: IState): IState {
+  const otherObj = {
+    state: "foo",
+    country: "bar",
+    shouldNotBeHere: "foo",
+  }
+
+ // TODO(sbdchd): we should error on the above object if possible
+  const address = {
+                  ~
+    ...state.address,
+~~~~~~~~~~~~~~~~~~~~~
+    street: "foo",
+~~~~~~~~~~~~~~~~~~
+    ...otherObj,
+~~~~~~~~~~~~~~~~
+  }
+~~~ [0]
+  return {
+    ...state,
+    address
+  }
+}
+
+function updateErr(state: IState): IState {
+  // TODO(sbdchd): we should only highlight the bad properties
+  const address = {
+                  ~
+    ...state.address,
+~~~~~~~~~~~~~~~~~~~~~
+    notAProperty: "foo",
+~~~~~~~~~~~~~~~~~~~~~~~~
+  }
+~~~ [0]
+  return {
+    ...state,
+    address
+  }
+}
+
+// TODO(sbdchd): add string formatter with extra field name
+
+[0]: Object spread must be exact.
