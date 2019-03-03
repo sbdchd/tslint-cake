@@ -8,5 +8,4 @@
 <Foo b="false" />
 
 <Foo b/>
-
 [0]: Prefer simple boolean attribute

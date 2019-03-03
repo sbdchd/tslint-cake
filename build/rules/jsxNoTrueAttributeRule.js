@@ -37,7 +37,10 @@ var JsxNoTrueAttributeWalker = /** @class */ (function (_super) {
             ts.isJsxExpression(node.initializer) &&
             node.initializer.expression &&
             node.initializer.expression.kind === ts.SyntaxKind.TrueKeyword) {
-            this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
+            var fix = new Lint.Replacement(
+            // Subtract and add 1 so that we remove the preceeding `=`
+            node.initializer.getStart() - 1, node.initializer.getWidth() + 1, "");
+            this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING, fix));
         }
         _super.prototype.visitJsxAttribute.call(this, node);
     };

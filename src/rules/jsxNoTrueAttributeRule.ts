@@ -19,11 +19,19 @@ class JsxNoTrueAttributeWalker extends Lint.RuleWalker {
       node.initializer.expression &&
       node.initializer.expression.kind === ts.SyntaxKind.TrueKeyword
     ) {
+      const fix = new Lint.Replacement(
+        // Subtract and add 1 so that we remove the preceeding `=`
+        node.initializer.getStart() - 1,
+        node.initializer.getWidth() + 1,
+        ""
+      )
+
       this.addFailure(
         this.createFailure(
           node.getStart(),
           node.getWidth(),
-          Rule.FAILURE_STRING
+          Rule.FAILURE_STRING,
+          fix
         )
       )
     }

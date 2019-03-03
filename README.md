@@ -37,7 +37,7 @@ Use `{ foo: bar }` instead of `{ ["foo"]: bar }`
 
 Use `<></>` instead of `<React.Fragment><React.Fragment/>`
 
-### `jsx-no-true-attribute`
+### `jsx-no-true-attribute` [Fixer]
 
 Use `<Foo bar/>` instead of `<Foo bar={true}/>`
 

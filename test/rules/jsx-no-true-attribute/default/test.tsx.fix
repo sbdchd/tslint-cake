@@ -1,0 +1,9 @@
+<Foo b />
+
+<Foo b={false} />
+
+<Foo b="true" />
+
+<Foo b="false" />
+
+<Foo b/>
