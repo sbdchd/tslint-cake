@@ -33,7 +33,7 @@ or common TSLint libraries.
 
 Use `{ foo: bar }` instead of `{ ["foo"]: bar }`
 
-### `react-prefer-simple-fragment`
+### `react-prefer-simple-fragment` [Fixer]
 
 Use `<></>` instead of `<React.Fragment><React.Fragment/>`
 

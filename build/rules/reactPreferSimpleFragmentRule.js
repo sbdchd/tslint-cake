@@ -40,7 +40,10 @@ var ReactPreferSimpleFragmentWalker = /** @class */ (function (_super) {
             tagName.expression.text === "React" &&
             tagName.name.text === "Fragment";
         if (badFragment) {
-            this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
+            var fixOpeningEl = new Lint.Replacement(tagName.getStart(), tagName.getWidth(), "");
+            var closingEl = node.closingElement.tagName;
+            var fixClosingEl = new Lint.Replacement(closingEl.getStart(), closingEl.getWidth(), "");
+            this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING, [fixOpeningEl, fixClosingEl]));
         }
         _super.prototype.visitJsxElement.call(this, node);
     };

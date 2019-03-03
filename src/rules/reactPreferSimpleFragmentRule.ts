@@ -23,11 +23,25 @@ class ReactPreferSimpleFragmentWalker extends Lint.RuleWalker {
       tagName.name.text === "Fragment"
 
     if (badFragment) {
+      const fixOpeningEl = new Lint.Replacement(
+        tagName.getStart(),
+        tagName.getWidth(),
+        ""
+      )
+
+      const closingEl = node.closingElement.tagName
+      const fixClosingEl = new Lint.Replacement(
+        closingEl.getStart(),
+        closingEl.getWidth(),
+        ""
+      )
+
       this.addFailure(
         this.createFailure(
           node.getStart(),
           node.getWidth(),
-          Rule.FAILURE_STRING
+          Rule.FAILURE_STRING,
+          [fixOpeningEl, fixClosingEl]
         )
       )
     }
