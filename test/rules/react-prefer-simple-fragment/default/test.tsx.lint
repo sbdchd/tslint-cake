@@ -7,7 +7,9 @@
 </React.Fragment>
 ~~~~~~~~~~~~~~~~~ [0]
 
-
+<React.Fragment key={foo}>
+<Foo/>
+</React.Fragment>
 
 <>
 <Foo/>

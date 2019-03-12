@@ -20,7 +20,8 @@ class ReactPreferSimpleFragmentWalker extends Lint.RuleWalker {
       ts.isIdentifier(tagName.expression) &&
       ts.isIdentifier(tagName.name) &&
       tagName.expression.text === "React" &&
-      tagName.name.text === "Fragment"
+      tagName.name.text === "Fragment" &&
+      node.openingElement.attributes.properties.length === 0
 
     if (badFragment) {
       const fixOpeningEl = new Lint.Replacement(

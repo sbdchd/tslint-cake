@@ -3,7 +3,9 @@
 <Bar/>
 </>
 
-
+<React.Fragment key={foo}>
+<Foo/>
+</React.Fragment>
 
 <>
 <Foo/>

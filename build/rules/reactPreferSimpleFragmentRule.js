@@ -38,7 +38,8 @@ var ReactPreferSimpleFragmentWalker = /** @class */ (function (_super) {
             ts.isIdentifier(tagName.expression) &&
             ts.isIdentifier(tagName.name) &&
             tagName.expression.text === "React" &&
-            tagName.name.text === "Fragment";
+            tagName.name.text === "Fragment" &&
+            node.openingElement.attributes.properties.length === 0;
         if (badFragment) {
             var fixOpeningEl = new Lint.Replacement(tagName.getStart(), tagName.getWidth(), "");
             var closingEl = node.closingElement.tagName;
