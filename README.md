@@ -190,6 +190,53 @@ function update(state: IState): IState {
 }
 ```
 
+### `react-memo-requires-custom-compare`
+
+When using [`React.memo()`](https://reactjs.org/docs/react-api.html#reactmemo) or [`extends React.PureComponent`](https://reactjs.org/docs/react-api.html#reactpurecomponent) the default
+comparsions are shallow which means they will always render for complex props
+like `Date`'s, `Array`s, or `Object`s, even if the underlying values are equivalent.
+
+In the cases of these complex props, this lint will warn you and recommend
+passing a custom compare function `React.memo()` or defining a custom
+`shouldComponentUpdate` and extending `React.Component`.
+
+**Caveat:** If an object is passed as a prop and isn't copied/changed, i.e., no
+`{...x}` then referential integrity is retained and the shallow compare of
+`React.memo()` and `PureComponent` will correctly prevent a render. So if you
+are using something like
+[Immutable-js](https://github.com/immutable-js/immutable-js) where shallow
+equals is maintained then this lint might be less helpful.
+
+```typescript
+interface IOkayProps {
+  name: string
+  accountAge: number | string
+  admin: boolean
+}
+
+const Okay = React.memo((props: IOkayProps) => (
+  <p>
+    {props.name} ({props.accountAge})
+  </p>
+))
+
+interface IBadProps {
+  user: {
+    name: string
+  }
+}
+
+// TSLint raises error
+const Bad = React.memo((props: IBadProps) => <p>{props.user.name} </p>)
+
+// TSLint raises error
+class BadPure extends React.PureComponent<IBadProps> {
+  render() {
+    return <p>{props.user.name} </p>
+  }
+}
+```
+
 ## Dev
 
 ```shell

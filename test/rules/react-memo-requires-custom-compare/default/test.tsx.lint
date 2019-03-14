@@ -1,0 +1,75 @@
+interface IOkayProps {
+  name: string
+  accountAge: number | string
+  admin: boolean
+}
+
+const Okay = React.memo((props: IOkayProps) => <p>{props.name} ({props.accountAge})</p>);
+
+const OkayFunctionExpression = React.memo(function(props: IOkayProps) {
+  return <p>{props.name} ({props.accountAge})</p>
+});
+
+function Foo(props: IOkayProps) {
+  return <p>{props.name} ({props.accountAge})</p>
+}
+
+const OkayFunction = React.memo(Foo);
+
+class OkayPure extends React.PureComponent<IOkayProps> {
+  render() {
+    return <p>{props.name} ({props.accountAge})</p>
+  }
+}
+
+interface IBadProps {
+  user: {
+    name: string
+  }
+}
+
+const Bad = React.memo((props: IBadProps) => <p>{props.user.name} </p>);
+            ~~~~~~~~~~ [1]
+
+const BadFunctionExpression = React.memo(function(props: IBadProps) {
+                              ~~~~~~~~~~ [1]
+  return <p>{props.user.name}</p>
+});
+
+function Bar(props: IBadProps) {
+  return <p>{props.user.name}</p>
+}
+
+const BadFunction = React.memo(Bar);
+                    ~~~~~~~~~~ [1]
+
+interface IBadPropsAgain {
+  name: string
+  created: Date
+}
+
+const BadAgain = React.memo((props: IBadPropsAgain) => <p>{props.created} </p>);
+                 ~~~~~~~~~~ [1]
+
+
+class BadPure extends React.PureComponent<IBadProps> {
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ [0]
+  render() {
+    return <p>{props.user.name} </p>
+  }
+}
+
+function areEqual(prevProps, nextProps) { }
+const Fine = React.memo((props: IBadProps) => <p>{props.user.name} </p>, areEqual);
+
+
+class FineNonePure extends React.Component<IBadProps> {
+  render() {
+    return <p>{props.user.name} </p>
+  }
+}
+
+
+[0]: `React.PureComponent` uses a shallow compare. Either use `React.Memo` or extend `React.Component` and override `shouldComponentUpdate()`
+
+[1]: `React.Memo` uses a shallow compare by default. Consider providing a custom compare function to `React.Memo` as a second argument.
