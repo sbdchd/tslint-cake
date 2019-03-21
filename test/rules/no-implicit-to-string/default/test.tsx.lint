@@ -22,6 +22,10 @@ const blah = 'hello ' + accountName;
 const blah =  accountName + 'hello '
               ~~~~~~~~~~~ [0]
 
+const someDate: Date = new Date()
+const infoPanel = <p>Completed on {someDate}</p>
+                                   ~~~~~~~~ [0]
+
 const ok = "foo";
 const foo = `hello ${ok}`;
 const bar = String(ok);

@@ -20,22 +20,23 @@ function getNullableBinaryExpressionNode(
   const nodeTypeLeft = checker.getTypeAtLocation(node.left)
   const nodeTypeRight = checker.getTypeAtLocation(node.right)
 
-  if (isNullableOrUndefined(nodeTypeLeft)) {
+  if (isNullableOrUndefinedOrObject(nodeTypeLeft)) {
     return node.left
   }
 
-  if (isNullableOrUndefined(nodeTypeRight)) {
+  if (isNullableOrUndefinedOrObject(nodeTypeRight)) {
     return node.right
   }
 
   return null
 }
 
-function isNullableOrUndefined(nodeType: ts.Type): boolean {
+function isNullableOrUndefinedOrObject(nodeType: ts.Type): boolean {
   // tslint:disable:no-bitwise
   return Boolean(
     nodeType.flags & ts.TypeFlags.Null ||
-      nodeType.flags & ts.TypeFlags.Undefined
+      nodeType.flags & ts.TypeFlags.Undefined ||
+      nodeType.flags & ts.TypeFlags.Object
   )
 }
 
@@ -58,7 +59,7 @@ class Walker extends Lint.ProgramAwareRuleWalker {
   public visitJsxExpression(node: ts.JsxExpression) {
     if (node.expression) {
       const nodeType = this.getTypeChecker().getTypeAtLocation(node.expression)
-      if (isNullableOrUndefined(nodeType)) {
+      if (isNullableOrUndefinedOrObject(nodeType)) {
         this.addFailure(
           this.createFailure(
             node.expression.getStart(),
@@ -77,7 +78,7 @@ class Walker extends Lint.ProgramAwareRuleWalker {
     ) {
       const argNode = node.arguments[0]
       const nodeType = this.getTypeChecker().getTypeAtLocation(argNode)
-      if (isNullableOrUndefined(nodeType)) {
+      if (isNullableOrUndefinedOrObject(nodeType)) {
         this.addFailure(
           this.createFailure(
             argNode.getStart(),
@@ -94,7 +95,7 @@ class Walker extends Lint.ProgramAwareRuleWalker {
         const spanType = this.getTypeChecker().getTypeAtLocation(
           span.expression
         )
-        if (isNullableOrUndefined(spanType)) {
+        if (isNullableOrUndefinedOrObject(spanType)) {
           this.addFailure(
             this.createFailure(
               span.expression.getStart(),

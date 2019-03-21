@@ -30,18 +30,19 @@ exports.Rule = Rule;
 function getNullableBinaryExpressionNode(checker, node) {
     var nodeTypeLeft = checker.getTypeAtLocation(node.left);
     var nodeTypeRight = checker.getTypeAtLocation(node.right);
-    if (isNullableOrUndefined(nodeTypeLeft)) {
+    if (isNullableOrUndefinedOrObject(nodeTypeLeft)) {
         return node.left;
     }
-    if (isNullableOrUndefined(nodeTypeRight)) {
+    if (isNullableOrUndefinedOrObject(nodeTypeRight)) {
         return node.right;
     }
     return null;
 }
-function isNullableOrUndefined(nodeType) {
+function isNullableOrUndefinedOrObject(nodeType) {
     // tslint:disable:no-bitwise
     return Boolean(nodeType.flags & ts.TypeFlags.Null ||
-        nodeType.flags & ts.TypeFlags.Undefined);
+        nodeType.flags & ts.TypeFlags.Undefined ||
+        nodeType.flags & ts.TypeFlags.Object);
 }
 var Walker = /** @class */ (function (_super) {
     __extends(Walker, _super);
@@ -60,7 +61,7 @@ var Walker = /** @class */ (function (_super) {
     Walker.prototype.visitJsxExpression = function (node) {
         if (node.expression) {
             var nodeType = this.getTypeChecker().getTypeAtLocation(node.expression);
-            if (isNullableOrUndefined(nodeType)) {
+            if (isNullableOrUndefinedOrObject(nodeType)) {
                 this.addFailure(this.createFailure(node.expression.getStart(), node.expression.getWidth(), Rule.FAILURE_STRING));
             }
         }
@@ -71,7 +72,7 @@ var Walker = /** @class */ (function (_super) {
             node.arguments) {
             var argNode = node.arguments[0];
             var nodeType = this.getTypeChecker().getTypeAtLocation(argNode);
-            if (isNullableOrUndefined(nodeType)) {
+            if (isNullableOrUndefinedOrObject(nodeType)) {
                 this.addFailure(this.createFailure(argNode.getStart(), argNode.getWidth(), Rule.FAILURE_STRING));
             }
         }
@@ -80,9 +81,8 @@ var Walker = /** @class */ (function (_super) {
         var _this = this;
         if (node.templateSpans) {
             node.templateSpans.forEach(function (span) {
-                var checker = _this.getTypeChecker();
-                var spanType = checker.getTypeAtLocation(span.expression);
-                if (isNullableOrUndefined(spanType)) {
+                var spanType = _this.getTypeChecker().getTypeAtLocation(span.expression);
+                if (isNullableOrUndefinedOrObject(spanType)) {
                     _this.addFailure(_this.createFailure(span.expression.getStart(), span.expression.getWidth(), Rule.FAILURE_STRING));
                 }
             });

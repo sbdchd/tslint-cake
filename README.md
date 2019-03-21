@@ -237,12 +237,13 @@ class BadPure extends React.PureComponent<IBadProps> {
 }
 ```
 
-### `no-null-to-string`
+### `no-implicit-to-string`
 
-Checks for cases where `null` or `undefined` are converted to `string` or passed to a jsx expression.
+Checks for cases where `null`, `undefined`, or `object` are converted to
+`string` or passed to a jsx expression.
 
 ```typescript
-const userName: string | null = null
+const userName: string | null | Date = null
 // all of the following error
 const foo = `hello ${userName}`
 const bar = String(userName)
