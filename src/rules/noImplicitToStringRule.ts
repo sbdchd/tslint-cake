@@ -2,7 +2,7 @@ import * as ts from "typescript"
 import * as Lint from "tslint"
 
 export class Rule extends Lint.Rules.TypedRule {
-  public static FAILURE_STRING = "null/undefined to string."
+  public static FAILURE_STRING = "null/undefined/object to string."
   public applyWithProgram(
     sourceFile: ts.SourceFile,
     program: ts.Program
@@ -56,20 +56,7 @@ class Walker extends Lint.ProgramAwareRuleWalker {
       }
     }
   }
-  public visitJsxExpression(node: ts.JsxExpression) {
-    if (node.expression) {
-      const nodeType = this.getTypeChecker().getTypeAtLocation(node.expression)
-      if (isNullableOrUndefinedOrObject(nodeType)) {
-        this.addFailure(
-          this.createFailure(
-            node.expression.getStart(),
-            node.expression.getWidth(),
-            Rule.FAILURE_STRING
-          )
-        )
-      }
-    }
-  }
+
   public visitCallExpression(node: ts.CallExpression) {
     if (
       ts.isIdentifier(node.expression) &&

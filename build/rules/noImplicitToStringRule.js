@@ -23,7 +23,7 @@ var Rule = /** @class */ (function (_super) {
     Rule.prototype.applyWithProgram = function (sourceFile, program) {
         return this.applyWithWalker(new Walker(sourceFile, this.getOptions(), program));
     };
-    Rule.FAILURE_STRING = "null/undefined to string.";
+    Rule.FAILURE_STRING = "null/undefined/object to string.";
     return Rule;
 }(Lint.Rules.TypedRule));
 exports.Rule = Rule;
@@ -55,14 +55,6 @@ var Walker = /** @class */ (function (_super) {
             var maybeNode = getNullableBinaryExpressionNode(checker, node);
             if (maybeNode) {
                 this.addFailure(this.createFailure(maybeNode.getStart(), maybeNode.getWidth(), Rule.FAILURE_STRING));
-            }
-        }
-    };
-    Walker.prototype.visitJsxExpression = function (node) {
-        if (node.expression) {
-            var nodeType = this.getTypeChecker().getTypeAtLocation(node.expression);
-            if (isNullableOrUndefinedOrObject(nodeType)) {
-                this.addFailure(this.createFailure(node.expression.getStart(), node.expression.getWidth(), Rule.FAILURE_STRING));
             }
         }
     };

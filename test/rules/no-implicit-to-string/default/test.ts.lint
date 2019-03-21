@@ -1,36 +1,29 @@
-const userName: string | null = null
+const userName: string | null = null;
 const foo = `hello ${userName}`;
                      ~~~~~~~~ [0]
 const bar = String(userName);
                    ~~~~~~~~ [0]
-const Foo = <p>{userName}</p>
-                ~~~~~~~~ [0]
+
 const blah = 'hello ' + userName;
                         ~~~~~~~~ [0]
-const blah =  userName + 'hello '
+const blah =  userName + 'hello ';
               ~~~~~~~~ [0]
 
-const accountName: string | undefined = undefined
+const accountName: string | undefined = undefined;
 const foo = `hello ${accountName}`;
                      ~~~~~~~~~~~ [0]
 const bar = String(accountName);
                    ~~~~~~~~~~~ [0]
-const Foo = <p>{accountName}</p>
-                ~~~~~~~~~~~ [0]
 const blah = 'hello ' + accountName;
                         ~~~~~~~~~~~ [0]
-const blah =  accountName + 'hello '
+const blah =  accountName + 'hello ';
               ~~~~~~~~~~~ [0]
 
-const someDate: Date = new Date()
-const infoPanel = <p>Completed on {someDate}</p>
-                                   ~~~~~~~~ [0]
 
 const ok = "foo";
 const foo = `hello ${ok}`;
 const bar = String(ok);
-const Foo = <p>{ok}</p>;
 const blah = 'hello ' + ok;
 
 
-[0]: null/undefined to string.
+[0]: null/undefined/object to string.
